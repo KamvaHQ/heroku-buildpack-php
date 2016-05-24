@@ -64,6 +64,11 @@ http {
             deny all;
         }
         
+        # Remove index.php
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+        
         # default handling of .php
         location ~ \.php {
             try_files @heroku-fcgi @heroku-fcgi;
